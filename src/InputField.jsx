@@ -10,7 +10,6 @@ function InputField(props) {
   function handleClick(event) {
     processInput(value);
   }
-  //   processInput(value);
   return (
     <React.Fragment>
       <input
