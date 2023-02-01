@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import React, { useState } from "react";
+import "./App.css";
+import InputField from "./InputField";
 function App() {
+  const [tasks, addTasks] = useState([]);
+
+  let deleteItem = (item) => {
+  
+    let newList = [];
+    tasks.forEach((task) => {
+      
+      if (task !== item) {
+        console.log("found it");
+        newList.push(task);
+      }
+    });
+    addTasks(newList);
+  };
+  let listOfTasks = tasks.map((t) => {
+    return (
+      <div key={t}>
+        <p>{t}</p>
+        <button onClick={() => deleteItem(t)}>delete</button>
+      </div>
+    );
+  });
+  console.log(tasks);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InputField processInput={processInput} />
+      {listOfTasks}
     </div>
   );
+
+  function processInput(input) {
+    console.log(input);
+    addTasks((current) => [...current, input]); // used to push to an array in react
+  }
 }
 
 export default App;
