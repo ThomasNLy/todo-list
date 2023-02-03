@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import "./InputField.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/fontawesome-free-solid";
 function InputField(props) {
   const { processInput } = props;
   const [value, setValue] = useState({ task: "", date: 0 });
@@ -14,16 +16,19 @@ function InputField(props) {
   }
   return (
     <React.Fragment>
-      <input
-        type="text"
-        name=""
-        id=""
-        placeholder="todo"
-        onChange={handleChange}
-      />
-      <button type="submit" onClick={handleClick}>
-        Submit
-      </button>
+      <div className="inputfield-container">
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="Add new item"
+          onChange={handleChange}
+          className="inputfield"
+        />
+        <button type="submit" onClick={handleClick} className="add-task-button">
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      </div>
     </React.Fragment>
   );
 }

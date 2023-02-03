@@ -1,0 +1,22 @@
+.inputfield-container {
+  margin-left: 1.25em;
+}
+.inputfield {
+  border-radius: 0.4em;
+  border-width: 0.1em;
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
+  border-style: solid;
+  height: 1.9em;
+  width: 19em;
+  padding-left: 1em;
+}
+.add-task-button {
+  margin-left: 0.8em;
+  border-radius: 0.4em;
+  border-color: #d9d9d9;
+  border-style: solid;
+  background-color: #d9d9d9;
+  height: 2em;
+  width: 2em;
+}
