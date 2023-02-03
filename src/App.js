@@ -1,25 +1,36 @@
 import React, { useState } from "react";
 import "./App.css";
-import InputField from "./InputField";
-import ToDoItem from "./ToDoItem";
+import InputField from "./components/InputField";
+import ToDoItem from "./components/ToDoItem";
 function App() {
   const [tasks, addTasks] = useState([]);
 
   let deleteItem = (itemID) => {
     let newList = [];
     tasks.forEach((task, index) => {
-      let currentID = `${index}${task}`;
+      let currentTask = task.task;
+      let currentID = `${index}${currentTask}`;
       if (currentID !== itemID) {
-        console.log("found it");
+        // console.log("found it");
         newList.push(task);
       }
     });
     addTasks(newList);
   };
   let listOfTasks = tasks.map((task, index) => {
-    let id = `${index}${task}`;
+    let currentTask = task.task;
+    let id = `${index}${currentTask}`;
+    let date = `${task.date.getFullYear()}-${
+      task.date.getMonth() + 1
+    }-${task.date.getDate()}`;
     return (
-      <ToDoItem key={id} id={id} task={task} deleteItem={deleteItem} />
+      <ToDoItem
+        key={id}
+        id={id}
+        task={currentTask}
+        deleteItem={deleteItem}
+        date={date}
+      />
       // <div key={id}>
       //   <p>{task}</p>
       //   {/* on click needs to have a function that tells it what to do
@@ -29,7 +40,7 @@ function App() {
       // </div>
     );
   });
-  console.log(tasks);
+  //console.log(tasks);
 
   return (
     <div className="App">
@@ -39,7 +50,7 @@ function App() {
   );
 
   function processInput(input) {
-    console.log(input);
+    //console.log(input);
     addTasks((current) => [...current, input]); // used to push to an array in react
   }
 }

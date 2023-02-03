@@ -3,11 +3,14 @@ import "./ToDoItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 function ToDoItem(props) {
-  const { id, task, deleteItem } = props;
+  const { id, task, deleteItem, date } = props;
   const [check, setCheck] = useState(false);
 
   let isChecked = () => {
     setCheck(!check);
+  };
+  let taskCompleted = () => {
+    return check ? "task-completed" : "task-not-completed";
   };
 
   return (
@@ -23,10 +26,13 @@ function ToDoItem(props) {
       </div>
 
       <div className="task-container">
-        <label htmlFor="toDoItem" className="checkbox-label">
+        <label
+          htmlFor="toDoItem"
+          className={`checkbox-label ${taskCompleted()}`}
+        >
           {task}
         </label>
-        <p>date</p>
+        <p>{date}</p>
       </div>
 
       {/* <p>{task}</p> */}

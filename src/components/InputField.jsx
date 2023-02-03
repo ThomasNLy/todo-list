@@ -2,10 +2,12 @@ import React, { useState } from "react";
 
 function InputField(props) {
   const { processInput } = props;
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState({ task: "", date: 0 });
   function handleChange(event) {
     event.preventDefault();
-    setValue(event.target.value);
+    const date = new Date();
+
+    setValue({ task: event.target.value, date: date });
   }
   function handleClick(event) {
     processInput(value);
