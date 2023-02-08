@@ -6,6 +6,11 @@ import ToDoItem from "./components/ToDoItem";
 import OrderingDropDownMenu from "./components/OrderingDropDownMenu";
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [oldestToNewest, setOldestToNewest] = useState(true);
+
+  let setOrdering = (value) => {
+    setOldestToNewest(value);
+  };
 
   let deleteItem = (itemID) => {
     let newList = [];
@@ -47,14 +52,23 @@ function App() {
   return (
     <div className="App">
       <InputField processInput={processInput} />
-      <OrderingDropDownMenu sortOldest={sortOldest} sortNewest={sortNewest} />
+      <OrderingDropDownMenu
+        sortOldest={sortOldest}
+        sortNewest={sortNewest}
+        setOrdering={setOrdering}
+      />
       {listOfTasks}
     </div>
   );
 
-  function processInput(input) {
-    //console.log(input);
-    setTasks((current) => [...current, input]); // used to push to an array in react
+  async function processInput(input) {
+    //based on whether the order is newest to oldest it will add the new item at the bottom or top of list
+    //is unable to rerender the dom if calling the sorting functions
+    setTasks(
+      oldestToNewest
+        ? (current) => [...current, input]
+        : (current) => [input, ...current]
+    );
   }
 
   function sortOldest() {
@@ -95,15 +109,6 @@ function App() {
       newList[currentIndex] = currentTask;
     }
     setTasks(newList);
-
-    // sortOldest();
-    // let newList = [];
-    // for (let i = tasks.length - 1; i >= 0; i--) {
-    //   newList.push(tasks[i]);
-    // }
-    // console.log(newList);
-    // console.log("sorted newest");
-    // setTasks(newList);
   }
 }
 

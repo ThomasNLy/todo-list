@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 function OrderingDropDownMenu(props) {
-  const { sortOldest, sortNewest } = props;
+  const { sortOldest, sortNewest, setOrdering } = props;
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("oldest");
   let onChange = (event) => {
     setValue(event.target.value);
     if (event.target.value === "oldest") {
@@ -11,6 +11,7 @@ function OrderingDropDownMenu(props) {
     } else if (event.target.value === "newest") {
       sortNewest();
     }
+    setOrdering(event.target.value === "oldest" ? true : false);
   };
 
   return (
