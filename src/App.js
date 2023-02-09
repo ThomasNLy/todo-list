@@ -18,7 +18,6 @@ function App() {
       let currentTask = task.task;
       let currentID = `${index}${currentTask}`;
       if (currentID !== itemID) {
-        // console.log("found it");
         newList.push(task);
       }
     });
@@ -38,13 +37,6 @@ function App() {
         deleteItem={deleteItem}
         date={date}
       />
-      // <div key={id}>
-      //   <p>{task}</p>
-      //   {/* on click needs to have a function that tells it what to do
-      //   if clicking the button requires parameters to be passed than it needs to be a function called within the onclick function
-      //   */}
-      //   <button onClick={() => deleteItem(id)}>delete</button>
-      // </div>
     );
   });
   //console.log(tasks);
@@ -61,7 +53,7 @@ function App() {
     </div>
   );
 
-  async function processInput(input) {
+  function processInput(input) {
     //based on whether the order is newest to oldest it will add the new item at the bottom or top of list
     //is unable to rerender the dom if calling the sorting functions
     setTasks(
